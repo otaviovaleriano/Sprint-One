@@ -1,51 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Todo from './Todo';
-import {db} from './firebase'
-import firebase from 'firebase';
+import { db, addTodoToFirestore } from './firebase';
 
 function App() {
-
   const [todos, setTodos] = useState([]);
-  const [input, setInput] = useState(['']);
+  const [input, setInput] = useState('');
 
   useEffect(() => {
-    const data = db.collection('todos').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
-      const todosData = snapshot.docs.map(doc => ({id: doc.id, todo: doc.data().todo}));
+    const unsubscribe = db.collection('todos').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+      const todosData = snapshot.docs.map(doc => ({ id: doc.id, todo: doc.data().todo }));
       setTodos(todosData);
     });
 
-    return () => data(); //will return the info from the database from the snapshots on changes;
+    return () => unsubscribe();
   }, []); 
 
   const addTodo = (event) => {
-    //  console.log('Testing Add')
-     //spread - appending the input value to the end of my list/array
-     event.preventDefault();
-
-     db.collection('todos').add({
-      todo:input,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp()
-     })
-    //  setTodos([...todos, input])
-     setInput('');
-  }
+    event.preventDefault();
+    if (input.trim() !== '') {
+      addTodoToFirestore(input)
+        .then(() => {
+          console.log('Todo added successfully');
+          setInput('');
+        })
+        .catch(error => {
+          console.error('Error adding todo: ', error);
+        });
+    }
+  };
 
   return (
-    <form>
     <div className="App">
-      <h1>Hello World</h1>
-      <input value={input} onChange={event => setInput(event.target.value)}/>
-      <button type="submit" onClick={addTodo} disabled={!input}> Add To-Do </button>
-
+      <h1>To-do Web App 😁</h1>
+      <form onSubmit={addTodo}>
+        <input value={input} onChange={event => setInput(event.target.value)} />
+        <button type="submit" disabled={!input.trim()}>Add To-Do</button>
+      </form>
       <ul>
-      {todos.map(todo => (
-          <Todo todo={todo}/>
-        ))}            
+        {todos.map(todo => (
+          <Todo key={todo.id} todo={todo} />
+        ))}
       </ul>
-      
     </div>
-    </form>
   );
 }
 

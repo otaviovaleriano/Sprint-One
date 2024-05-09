@@ -6,14 +6,38 @@ import firebase from "firebase";
 
 // Your web app's Firebase configuration
 const firebaseConfig = firebase.initializeApp({
-  apiKey: "AIzaSyAJLiHrSyo_kWa_Q-atLasBawY-iZffyNs",
-  authDomain: "todoapp-1a1b1.firebaseapp.com",
-  projectId: "todoapp-1a1b1",
-  storageBucket: "todoapp-1a1b1.appspot.com",
-  messagingSenderId: "1076658935118",
-  appId: "1:1076658935118:web:b96627d63657e9cd25fa1f"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID
 });
 
 const db = firebaseConfig.firestore();
 
-export { db };
+
+// Add Todo Feature
+const addTodoToFirestore = (todo) => {
+  return db.collection('todos').add({
+    todo: todo,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  });
+};
+
+// Delete Todo Feature
+const deleteTodo = (id) => {
+  return db.collection('todos').doc(id).delete();
+};
+
+
+// Update Todo Feature
+const updateTodo = (id, newTodo) => {
+  return db.collection('todos').doc(id).update({
+    todo: newTodo,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  });
+};
+
+export { db, deleteTodo, addTodoToFirestore, updateTodo };
+
