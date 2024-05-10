@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+## Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Project Title**: To-Do Web App
 
-## Available Scripts
+**Project Description**: Web App developed in ReactJs and Firestore (Firebase Database), to keep track of a personal To-Do list.
 
-In the project directory, you can run:
+**Project Goals**: Develop a simple web page with react that will allow the user to Create, Read, Update, and Delete To-Do items from the list, that is stored in a collection in a Cloud Database - Firestore.
 
-### `npm start`
+## Instructions for Build and Use
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Steps to build and/or run the software:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository
+2. in the folder you cloned, run in the terminal: npm install and run npm i firebase@^8.10.0
+3. Create a Firebase project at the Firebase Console -> https://console.firebase.google.com/u/1/
+4. With the information provided by Firebase, replace the information in the variable "firebaseConfig" on firebase.js
+5. Run/build the project entering "npm start" in the terminal
 
-### `npm test`
+Instructions for using the software:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. After entering "npm start," it will open automatically a page on [http://localhost:3000](http://localhost:3000) 
+2. Type a To-Do item, press enter or click "Add To-do." The item will be added automatically to the list and collection in the database.
+3. The item will be displayed bellow the input bar with options to edit the To-Do or delete it.
+4. When clicking in the pen icon, it will transform the item into an input text field, where you can edit it and save the to-do item. The update occur automatically and in real-time with the database.
+5. When clicking in the trash can icon, it will delete/remove the item from the list and from the database collection.
 
-### `npm run build`
+## Development Environment 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To recreate the development environment, you need the following software and/or libraries with the specified versions:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+*  Vs Code
+*  Node.js v20.12.2.
+*  firebase@^8.10.0  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Useful Websites to Learn More
 
-### `npm run eject`
+I found these websites useful in developing this software:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* [Cloud Firestore](https://firebase.google.com/docs/firestore)
+* [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* [Youtube ](www.youtube.com)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Future Work
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The following items I plan to fix, improve, and/or add to this project in the future:
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* [ ] Deadline feature 
+* [ ] Authentication
+* [ ] Reminder Feature to send emails to the email used on the authentication.
