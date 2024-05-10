@@ -21,6 +21,7 @@ const db = firebaseConfig.firestore();
 const addTodoToFirestore = (todo) => {
   return db.collection('todos').add({
     todo: todo,
+    // deadline: deadline,
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
   });
 };
