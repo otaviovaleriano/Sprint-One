@@ -45,6 +45,7 @@ I found these websites useful in developing this software:
 
 The following items I plan to fix, improve, and/or add to this project in the future:
 
+* [ ] "Done" status feature for the tasks 
 * [ ] Deadline feature 
 * [ ] Authentication
 * [ ] Reminder Feature to send emails to the email used on the authentication.
